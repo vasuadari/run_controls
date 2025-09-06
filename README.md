@@ -1,6 +1,6 @@
 # Run Commands
 
-My personalized rc files.
+My personalized [rc](http://www.catb.org/~esr/writings/taoup/html/ch10s03.html) files.
 
 # Installation
 
