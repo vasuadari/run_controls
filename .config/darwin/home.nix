@@ -120,4 +120,20 @@
   };
 
   programs.home-manager.enable = true;
+
+  programs.openclaw = {
+    documents = ./documents;
+
+    config = {
+      gateway = {
+        mode = "local";
+        auth.token = builtins.readFile "/Users/vasu.adari/.secrets/openclaw-gateway-token";
+      };
+    };
+
+    instances.default = {
+      enable = true;
+      plugins = [];
+    };
+  };
 }

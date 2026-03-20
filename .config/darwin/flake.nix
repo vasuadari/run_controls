@@ -2,15 +2,13 @@
   description = "Darwin configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "nix-openclaw/nixpkgs";
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.follows = "nix-openclaw/home-manager";
+    nix-openclaw.url = "github:openclaw/nix-openclaw";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -22,12 +20,18 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-openclaw, nix-homebrew, homebrew-core, homebrew-cask, ... }:
   let
     machine = "SB-243";
     system = "aarch64-darwin";
     username = "vasu.adari";
-    nixpkgsConfig = { config.allowUnfree = true; };
+    nixpkgsConfig = {
+      config.allowUnfree = true;
+      overlays = [
+        (final: prev: { bird = prev.bird2; })
+        nix-openclaw.overlays.default
+      ];
+    };
     pkgs = import nixpkgs {
       inherit system;
     };
@@ -94,7 +98,6 @@
             "aichat"
             "helmfile"
             "gitui"
-            "openclaw"
           ];
 
           homebrew.casks = [
@@ -128,6 +131,7 @@
           nixpkgs = nixpkgsConfig;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [ nix-openclaw.homeManagerModules.openclaw ];
           home-manager.users.vasuadari = import ./home.nix;
         }
       ];
