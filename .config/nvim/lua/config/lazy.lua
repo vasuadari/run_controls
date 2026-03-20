@@ -82,3 +82,4 @@ require("nvim-tree").setup({
 })
 
 vim.cmd([[colorscheme minimalist]])
+

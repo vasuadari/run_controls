@@ -18,3 +18,7 @@ opt.shiftwidth = 2
 opt.background = dark
 opt.syntax = 'on'
 -- g.mix_format_on_save = 1
+--
+
+g.better_whitespace_enabled = 1
+g.strip_whitespace_on_save = 1

@@ -7,7 +7,7 @@ then
 fi
 
 alias vpn="sudo $HOME/.ovpn/vpn.sh"
-export EDITOR=nvim
+export EDITOR="nvim"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/openvpn/sbin:$PATH"
@@ -16,3 +16,14 @@ export PATH=/opt/homebrew/Cellar/ripgrep/13.0.0/bin:$PATH
 function s() {
   exec $@
 }
+
+setopt hist_ignore_dups     # ignore duplication command history list
+setopt share_history        # share command history data
+setopt HIST_IGNORE_SPACE    # ignore commands starts with sapce
+setopt APPEND_HISTORY       # write history only when closing
+setopt EXTENDED_HISTORY     # add more info
+setopt interactivecomments  # allow comments
+
+HISTFILE=~/.zsh_history
+SAVEHIST=100000
+HISTSIZE=100000

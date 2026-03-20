@@ -16,7 +16,7 @@
   nix.enable = false;
   system.stateVersion = 6;
 
-  environment.systemPackages = with pkgs; [ ollama dnsmasq colima docker ];
+  environment.systemPackages = with pkgs; [ dnsmasq colima docker ];
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -69,4 +69,7 @@
   };
 
   environment.launchDaemons.dnsmasq.enable = true;
+
+  system.checks.verifyMacOSVersion = false;
+  system.primaryUser = "vasu.adari";
 }

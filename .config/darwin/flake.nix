@@ -75,6 +75,12 @@
         {
           homebrew.enable = true;
 
+          homebrew.onActivation = {
+            autoUpdate = true;
+            # cleanup = "uninstall";
+            upgrade = true;
+          };
+
           homebrew.brews = [
             "coreutils"
             "ripgrep"
@@ -85,6 +91,10 @@
             "helm"
             "bore-cli"
             "mise"
+            "aichat"
+            "helmfile"
+            "gitui"
+            "openclaw"
           ];
 
           homebrew.casks = [
@@ -101,9 +111,15 @@
             "tailscale"
             "firefox"
             "notion"
-            "zed"
             "cursor"
             "craft"
+            "neovide"
+            "brave-browser"
+            "emacs"
+            "tunnelblick"
+            "zed"
+            "livebook"
+            "ollama"
           ];
         }
 
@@ -116,5 +132,5 @@
         }
       ];
     };
-  }; 
+  };
 }

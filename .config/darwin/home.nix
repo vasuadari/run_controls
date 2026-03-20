@@ -34,6 +34,8 @@
       jwt-cli
       shell-gpt
       nodejs
+      btop
+      #wkhtmltopdf-bin
     ];
     file = {
       ".profile.d" = {
@@ -105,8 +107,10 @@
 
       sessionVariables = {
         EDITOR = "nvim";
+        HOMEBREW_SYSTEM_VERSION=15.0;
+        HOMEBREW_FAKE_MACOS=15.0;
       };
-      
+
       shellAliases = {
         ls = "ls --color";
         vim = "nvim";

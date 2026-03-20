@@ -3,9 +3,10 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
-    build = "npm install -g mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
+    -- build = "npm install -g mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
     config = function()
         require("mcphub").setup({
+            cmd = "/users/vasu.adari/.npm-global/bin/mcp-hub",
             --- `mcp-hub` binary related options-------------------
             config = vim.fn.expand("~/.config/mcphub/servers.json"), -- Absolute path to MCP Servers config file (will create if not exists)
             port = 37373, -- The port `mcp-hub` server listens to

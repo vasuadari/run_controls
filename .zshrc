@@ -42,7 +42,6 @@ setp /opt/homebrew/Cellar/tree-sitter/0.20.6/bin
 setp /opt/homebrew/Cellar/neovim/0.6.1/bin
 setp "/opt/homebrew/opt/imagemagick@6/bin"
 setp /opt/homebrew/Cellar/mtr/0.95/sbin
-setp /Users/vasu/.local/bin
 setp /opt/homebrew/Cellar/dnsmasq/2.86/sbin
 setp /opt/homebrew/Cellar/tmux/3.3a/bin
 setp ${KREW_ROOT:-$HOME/.krew}/bin
@@ -52,6 +51,7 @@ setp /opt/homebrew/Cellar/zoxide/0.8.3/bin
 setp /opt/homebrew/Cellar/curl/8.8.0/bin
 setp /opt/homebrew/Cellar/lua-language-server/3.9.3/bin
 setp /opt/homebrew/Cellar/sops/3.9.1/bin
+setp /Users/vasu.adari/.cargo/bin
 
 for i in $(ls ~/.profile.d)
 do
