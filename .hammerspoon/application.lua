@@ -44,7 +44,9 @@ module.init = function(k)
       n = 'Numi',
       m = 'Sequel Pro',
       x = 'Firefox',
-      w = 'Safari'
+      w = 'Safari',
+      o = 'Outlook',
+      t = 'Microsoft Teams',
    }
 
    for key, application in pairs(applications) do
