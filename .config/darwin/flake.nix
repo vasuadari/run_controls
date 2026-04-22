@@ -24,9 +24,9 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, ... }:
   let
-    machine = "SB-243";
+    machine = "HRXY5C4QDV";
     system = "aarch64-darwin";
-    username = "vasu.adari";
+    username = "vadari";
     nixpkgsConfig = { config.allowUnfree = true; };
     pkgs = import nixpkgs {
       inherit system;
@@ -60,7 +60,7 @@
           nix-homebrew = {
             enable = true;
 
-            user = "vasu.adari";
+            user = "vadari";
 
             taps = {
               "homebrew/homebrew-core" = homebrew-core;
@@ -85,20 +85,17 @@
             "coreutils"
             "ripgrep"
             "pure"
-            "openvpn"
-            "rsc_2fa"
             "zoxide"
             "helm"
             "bore-cli"
             "mise"
-            "aichat"
             "helmfile"
             "gitui"
-            "openclaw"
+            "eza"
+            "tree-sitter"
           ];
 
           homebrew.casks = [
-            "slack"
             "clipy"
             "alacritty"
             "hammerspoon"
@@ -108,18 +105,14 @@
             "font-powerline-symbols"
             "google-chrome"
             "numi"
-            "tailscale"
             "firefox"
-            "notion"
-            "cursor"
             "craft"
-            "neovide"
-            "brave-browser"
             "emacs"
-            "tunnelblick"
-            "zed"
             "livebook"
-            "ollama"
+            "ollama-app"
+            "Postman"
+            "claude-code"
+            "sourcetree"
           ];
         }
 

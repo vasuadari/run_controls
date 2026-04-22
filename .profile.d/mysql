@@ -1,4 +1,4 @@
-export PATH="/opt/homebrew/opt/mysql-client@5.7/bin:$PATH"
+#export PATH="/opt/homebrew/opt/mysql-client@5.7/bin:$PATH"
 #export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client@5.7/lib/pkgconfig"
-export LDFLAGS="-L/opt/homebrew/opt/mysql-client@5.7/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/mysql-client@5.7/include"
+#export LDFLAGS="-L/opt/homebrew/opt/mysql-client@5.7/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/mysql-client@5.7/include"

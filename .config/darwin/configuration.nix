@@ -2,8 +2,8 @@
 
 {
   users.users.vasuadari = {
-    name = "vasu.adari";
-    home = "/Users/vasu.adari";
+    name = "vadari";
+    home = "/Users/vadari";
   };
 
 
@@ -16,7 +16,7 @@
   nix.enable = false;
   system.stateVersion = 6;
 
-  environment.systemPackages = with pkgs; [ dnsmasq colima docker ];
+  environment.systemPackages = with pkgs; [ colima docker ];
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -30,7 +30,6 @@
     "Thunderbolt Bridge"
     "USB 10/100/1000 LAN"
   ];
-  networking.dns = [ "127.0.0.1" "1.1.1.1" ];
 
   launchd = {
     user = {
@@ -61,7 +60,7 @@
   };
 
   launchd.daemons.dnsmasq = {
-    command = "${pkgs.dnsmasq}/bin/dnsmasq --conf-file=/Users/vasu.adari/.config/dnsmasq.conf";
+    command = "${pkgs.dnsmasq}/bin/dnsmasq --conf-file=/Users/vadari/.config/dnsmasq.conf";
     serviceConfig = {
       KeepAlive = true;
       RunAtLoad = true;
@@ -71,5 +70,5 @@
   environment.launchDaemons.dnsmasq.enable = true;
 
   system.checks.verifyMacOSVersion = false;
-  system.primaryUser = "vasu.adari";
+  system.primaryUser = "vadari";
 }

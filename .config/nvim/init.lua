@@ -1,6 +1,5 @@
 require('options')
 require('config.lazy')
 require('whichkey')
-require('treesitter')
 require('debug_adapter')
 require('neovide')

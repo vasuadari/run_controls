@@ -47,10 +47,9 @@ require("lazy").setup({
 	install = { colorscheme = { "habamax" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
+	-- Disable rocks support (causes issues with tree-sitter-norg)
 	rocks = {
-		enabled = true,
-		root = vim.fn.stdpath("data") .. "/lazy-rocks",
-		server = "https://nvim-neorocks.github.io/rocks-binaries/",
+		enabled = false,
 	},
 })
 

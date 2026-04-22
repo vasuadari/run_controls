@@ -1,7 +1,11 @@
-return   {
+return {
   "nvim-treesitter/nvim-treesitter",
-  config = function(_, opts)
-    local installer = require('nvim-treesitter.install')
-    installer.prefer_git = true
+  lazy = false,
+  build = ":TSUpdate",
+  config = function()
+    -- New nvim-treesitter API (v1.0+) - minimal setup
+    require('nvim-treesitter').setup {
+      install_dir = vim.fn.stdpath('data') .. '/site',
+    }
   end,
 }
