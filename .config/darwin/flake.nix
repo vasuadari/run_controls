@@ -20,9 +20,17 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-acli = {
+      url = "github:atlassian/homebrew-acli";
+      flake = false;
+    };
+    homebrew-devops = {
+      url = "git+ssh://git@gitlab.agodadev.io/tools/homebrew-core.git";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, homebrew-devops, ... }:
   let
     machine = "HRXY5C4QDV";
     system = "aarch64-darwin";
@@ -65,6 +73,8 @@
             taps = {
               "homebrew/homebrew-core" = homebrew-core;
               "homebrew/homebrew-cask" = homebrew-cask;
+              "atlassian/homebrew-acli" = homebrew-acli;
+              "devops/tap" = homebrew-devops;
             };
 
             mutableTaps = false;
@@ -93,6 +103,11 @@
             "gitui"
             "eza"
             "tree-sitter"
+            "glab"
+            "acli"
+            "opencode"
+            "ntfy"
+            "devops/tap/devstack"
           ];
 
           homebrew.casks = [
@@ -113,6 +128,7 @@
             "Postman"
             "claude-code"
             "sourcetree"
+            "keepingyouawake"
           ];
         }
 
