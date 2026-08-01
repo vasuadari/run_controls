@@ -34,6 +34,7 @@
       shell-gpt
       nodejs
       btop
+      llama-cpp
       #wkhtmltopdf-bin
     ];
     file = {
@@ -103,6 +104,7 @@
       prefix = "C-b";
       escapeTime = 0;
       baseIndex = 1;
+      disableConfirmationPrompt = true;
 
       extraConfig = ''
         # Set Oh My Tmux environment variables
@@ -120,6 +122,9 @@
 
         # Enable focus events
         set -g focus-events on
+
+        # Reset status style to let oh-my-tmux handle it
+        set -g status-style "bg=default,fg=default"
       '';
 
       plugins = with pkgs.tmuxPlugins; [
@@ -166,9 +171,20 @@
         do
           . ~/.profile.d/$i
         done
+
+        # Ensure home-manager / nix profile binaries take priority over
+        # macOS path_helper (/usr/bin) and homebrew paths prepended above.
+        export PATH="/etc/profiles/per-user/$USER/bin:$HOME/.nix-profile/bin:$HOME/.npm-global/bin:$PATH"
       '';
     };
   };
 
   programs.home-manager.enable = true;
+
+  home.activation.npmGlobalPackages = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    export PATH="${pkgs.nodejs}/bin:$PATH"
+    export npm_config_prefix="$HOME/.npm-global"
+    mkdir -p "$HOME/.npm-global"
+    npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+  '';
 }

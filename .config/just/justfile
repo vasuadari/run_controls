@@ -1,7 +1,11 @@
 alias s:= switch
 
+# switch:
+#   nix run nix-darwin -- switch --flake ~/.run_controls/.config/darwin#
 switch:
-  sudo nix run nix-darwin -- switch --flake ~/.run_controls/.config/darwin#
+    nix run nix-darwin -- build --flake ~/.run_controls/.config/darwin#
+    sudo ./result/activate
+    sudo nix-env -p /nix/var/nix/profiles/system --set ./result
 
 nflake:
   $EDITOR ~/.run_controls/.config/darwin/flake.nix

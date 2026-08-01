@@ -6,6 +6,7 @@
     home = "/Users/vadari";
   };
 
+  nix.settings.trusted-users = [ "root" "vadari" "@admin" ];
 
   nix.settings.experimental-features = ''
     auto-optimise-store = true
@@ -16,7 +17,7 @@
   nix.enable = false;
   system.stateVersion = 6;
 
-  environment.systemPackages = with pkgs; [ colima docker ];
+  environment.systemPackages = with pkgs; [ docker ];
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -34,25 +35,33 @@
   launchd = {
     user = {
       agents = {
-        ollama-serve = {
-          command = "${pkgs.ollama}/bin/ollama serve";
+#         colima-serve = {
+#           command = "${pkgs.colima}/bin/colima start --foreground";
+#           serviceConfig = {
+#             RunAtLoad = true;
+#             KeepAlive = true;
+#             StandardOutPath = "/tmp/colima_vasuadari.out.log";
+#             StandardErrorPath = "/tmp/colima_vasuadari.err.log";
+#             EnvironmentVariables = {
+#               PATH = "${pkgs.colima}/bin:${pkgs.docker}/bin:/usr/bin:/bin:/usr/sbin:/sbin";
+#             };
+#           };
+#         };
+
+        llama-server = {
+          command = ''${pkgs.llama-cpp}/bin/llama-server \
+            --model /Users/vadari/.cache/llama.cpp/gemma-4-12b-it-qat-q4_0.gguf \
+            --alias gemma-4-12b-qat \
+            --host 127.0.0.1 \
+            --port 8080 \
+            --ctx-size 8192 \
+            --n-gpu-layers 999 \
+            --jinja'';
           serviceConfig = {
-            KeepAlive = true;
-            RunAtLoad = true;
-            StandardOutPath = "/tmp/ollama_vasuadari.out.log";
-            StandardErrorPath = "/tmp/ollama_vasuadari.err.log";
-          };
-        };
-        colima-serve = {
-          command = "${pkgs.colima}/bin/colima start --foreground";
-          serviceConfig = {
             RunAtLoad = true;
             KeepAlive = true;
-            StandardOutPath = "/tmp/colima_vasuadari.out.log";
-            StandardErrorPath = "/tmp/colima_vasuadari.err.log";
-            EnvironmentVariables = {
-              PATH = "${pkgs.colima}/bin:${pkgs.docker}/bin:/usr/bin:/bin:/usr/sbin:/sbin";
-            };
+            StandardOutPath = "/tmp/llama-server_vasuadari.out.log";
+            StandardErrorPath = "/tmp/llama-server_vasuadari.err.log";
           };
         };
       };

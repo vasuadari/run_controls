@@ -12,6 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nix-homebrew.inputs.brew-src.url = "github:Homebrew/brew";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
@@ -24,13 +25,9 @@
       url = "github:atlassian/homebrew-acli";
       flake = false;
     };
-    homebrew-devops = {
-      url = "git+ssh://git@gitlab.agodadev.io/tools/homebrew-core.git";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, homebrew-devops, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, ... }:
   let
     machine = "HRXY5C4QDV";
     system = "aarch64-darwin";
@@ -74,7 +71,6 @@
               "homebrew/homebrew-core" = homebrew-core;
               "homebrew/homebrew-cask" = homebrew-cask;
               "atlassian/homebrew-acli" = homebrew-acli;
-              "devops/tap" = homebrew-devops;
             };
 
             mutableTaps = false;
@@ -87,7 +83,7 @@
 
           homebrew.onActivation = {
             autoUpdate = true;
-            # cleanup = "uninstall";
+            cleanup = "uninstall";
             upgrade = true;
           };
 
@@ -107,7 +103,12 @@
             "acli"
             "opencode"
             "ntfy"
-            "devops/tap/devstack"
+            "krb5"
+            "poetry"
+            "s3cmd"
+            "apache-spark"
+            "git-lfs"
+            "pandoc"
           ];
 
           homebrew.casks = [
@@ -124,11 +125,13 @@
             "craft"
             "emacs"
             "livebook"
-            "ollama-app"
-            "Postman"
+            "postman"
             "claude-code"
             "sourcetree"
             "keepingyouawake"
+            "codex"
+            "codex-app"
+            "slack-cli"
           ];
         }
 
@@ -138,6 +141,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.vasuadari = import ./home.nix;
+          home-manager.backupFileExtension = "backup";
         }
       ];
     };

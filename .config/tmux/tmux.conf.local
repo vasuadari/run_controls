@@ -419,3 +419,5 @@ set -g @super-fingers-key k
 #
 # "$@"
 # # /!\ do not remove the previous line
+set -g extended-keys on
+set -g extended-keys-format csi-u

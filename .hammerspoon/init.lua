@@ -7,6 +7,7 @@ require('screen').init(k)
 require('application').init(k)
 require('speed_menu').init(k)
 require('Caffeine').init(k)
+require('desk').init(k)
 
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
