@@ -93,7 +93,11 @@
 
           homebrew.onActivation = {
             autoUpdate = true;
-            cleanup = "uninstall";  # Remove packages not declared in flake
+            # KNOWN ISSUE: cleanup="uninstall" with nix-homebrew causes interactive prompts
+            # that want to remove casks even though they're declared. This is because
+            # nix-homebrew manages taps from the Nix store and brew bundle gets confused.
+            # Workaround: use "none" and manually clean with `brew autoremove` periodically.
+            cleanup = "none";
             upgrade = true;
           };
 

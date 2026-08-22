@@ -5,7 +5,14 @@ alias s:= switch
 switch:
     brew trust --formula atlassian/acli/acli
     nix run nix-darwin -- build --flake ~/.run_controls/.config/darwin#work
-    sudo ./result/activate
+    sudo ./result/activate 2>&1 | tee /tmp/nix-darwin-activate.log
+    sudo nix-env -p /nix/var/nix/profiles/system --set ./result
+
+# Debug switch - shows verbose output
+switch-debug:
+    brew trust --formula atlassian/acli/acli
+    nix run nix-darwin -- build --flake ~/.run_controls/.config/darwin#work --show-trace
+    sudo HOMEBREW_BUNDLE_DEBUG=1 ./result/activate
     sudo nix-env -p /nix/var/nix/profiles/system --set ./result
 
 nflake:
