@@ -98,7 +98,7 @@
 
           homebrew.onActivation = {
             autoUpdate = true;
-            cleanup = "none";  # Disabled - cleanup removes casks after install with nix-homebrew
+            cleanup = "uninstall";  # Remove packages not declared in flake
             upgrade = true;
           };
 

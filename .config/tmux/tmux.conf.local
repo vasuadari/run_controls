@@ -392,6 +392,7 @@ set -g @continuum-restore 'on'
 set -ga update-environment EDITOR
 set -g @plugin 'artemave/tmux_super_fingers'
 set -g @super-fingers-key k
+set -g @plugin 'cesarferreira/tmux.expose'
 
 # -- custom variables ----------------------------------------------------------
 
