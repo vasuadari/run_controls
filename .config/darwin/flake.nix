@@ -29,17 +29,13 @@
       url = "git+ssh://git@gitlab.agodadev.io/devops/homebrew.git";
       flake = false;
     };
-    homebrew-mirrord = {
-      url = "github:metalbear-co/homebrew-mirrord";
-      flake = false;
-    };
     agoda-homebrew-core = {
       url = "git+ssh://gitlab.agodadev.io/tools/homebrew-core.git";
       flake = false;
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, devstack-cli, homebrew-mirrord, agoda-homebrew-core, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, devstack-cli, agoda-homebrew-core, ... }:
   let
     machine = "work";
     system = "aarch64-darwin";
@@ -84,7 +80,6 @@
               "homebrew/homebrew-cask" = homebrew-cask;
               "atlassian/homebrew-acli" = homebrew-acli;
               "devops/homebrew-homebrew" = devstack-cli;
-              "metalbear-co/homebrew-mirrord" = homebrew-mirrord;
               "tools/homebrew-core" = agoda-homebrew-core;
             };
 
@@ -123,9 +118,7 @@
             "google-chrome"
             "numi"
             "firefox"
-            # "craft"  # Temporarily disabled - download failing
             "emacs-app"
-            "livebook"
             "postman"
             "claude-code"
             "sourcetree"
