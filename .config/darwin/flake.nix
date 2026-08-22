@@ -25,11 +25,23 @@
       url = "github:atlassian/homebrew-acli";
       flake = false;
     };
+    devstack-cli = {
+      url = "git+ssh://git@gitlab.agodadev.io/devops/homebrew.git";
+      flake = false;
+    };
+    homebrew-mirrord = {
+      url = "github:metalbear-co/homebrew-mirrord";
+      flake = false;
+    };
+    agoda-homebrew-core = {
+      url = "git+ssh://gitlab.agodadev.io/tools/homebrew-core.git";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, devstack-cli, homebrew-mirrord, agoda-homebrew-core, ... }:
   let
-    machine = "HRXY5C4QDV";
+    machine = "work";
     system = "aarch64-darwin";
     username = "vadari";
     nixpkgsConfig = { config.allowUnfree = true; };
@@ -71,6 +83,9 @@
               "homebrew/homebrew-core" = homebrew-core;
               "homebrew/homebrew-cask" = homebrew-cask;
               "atlassian/homebrew-acli" = homebrew-acli;
+              "devops/homebrew-homebrew" = devstack-cli;
+              "metalbear-co/homebrew-mirrord" = homebrew-mirrord;
+              "tools/homebrew-core" = agoda-homebrew-core;
             };
 
             mutableTaps = false;
@@ -83,32 +98,18 @@
 
           homebrew.onActivation = {
             autoUpdate = true;
-            cleanup = "uninstall";
+            cleanup = "none";  # Disabled - cleanup removes casks after install with nix-homebrew
             upgrade = true;
           };
 
           homebrew.brews = [
-            "coreutils"
-            "ripgrep"
-            "pure"
-            "zoxide"
-            "helm"
-            "bore-cli"
-            "mise"
-            "helmfile"
-            "gitui"
-            "eza"
-            "tree-sitter"
-            "glab"
-            "acli"
-            "opencode"
-            "ntfy"
-            "krb5"
-            "poetry"
-            "s3cmd"
-            "apache-spark"
-            "git-lfs"
-            "pandoc"
+            # Only proprietary/company-specific tools that aren't in Nixpkgs
+            "acli"                               # Atlassian CLI
+            "opencode"                           # Likely proprietary
+            "poetry"                             # Python package manager (Nix version broken with Python 3.14)
+            "xsv"                                # Fast CSV toolkit (not in Nixpkgs)
+            "devops/homebrew/devstack"           # Agoda internal
+            "tools/homebrew-core/kubectl-login" # Agoda internal
           ];
 
           homebrew.casks = [
@@ -122,8 +123,8 @@
             "google-chrome"
             "numi"
             "firefox"
-            "craft"
-            "emacs"
+            # "craft"  # Temporarily disabled - download failing
+            "emacs-app"
             "livebook"
             "postman"
             "claude-code"
@@ -132,6 +133,7 @@
             "codex"
             "codex-app"
             "slack-cli"
+            "karabiner-elements"
           ];
         }
 

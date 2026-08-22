@@ -4,6 +4,7 @@
   home = {
     stateVersion = "24.11"; # Please read the comment before changing.
     packages = with pkgs; [
+      # Existing packages
       git
       htop
       curl
@@ -20,7 +21,6 @@
       kubelogin-oidc
       fzf
       lua-language-server
-      tldr
       sops
       python3
       docker-compose
@@ -36,6 +36,50 @@
       btop
       llama-cpp
       #wkhtmltopdf-bin
+      
+      # Migrated from Homebrew brews (all available in Nixpkgs)
+      coreutils
+      ripgrep
+      pure-prompt
+      zoxide
+      kubernetes-helm      # helm
+      bore-cli
+      mise
+      helmfile
+      gitui
+      eza
+      tree-sitter
+      glab
+      ntfy
+      krb5
+      s3cmd
+      spark                # apache-spark
+      git-lfs
+      pandoc
+      
+      # Rust CLI tools (migrated from Homebrew)
+      fd
+      delta                # git-delta
+      difftastic
+      dust
+      dua                  # dua-cli
+      broot
+      tokei
+      hyperfine
+      jless
+      jaq
+      tealdeer
+      sd
+      grex
+      procs
+      bottom
+      atuin
+      starship
+      ouch
+      git-absorb
+      onefetch
+      hexyl
+      hurl
     ];
     file = {
       ".profile.d" = {

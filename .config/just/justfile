@@ -3,6 +3,8 @@ alias s:= switch
 # switch:
 #   nix run nix-darwin -- switch --flake ~/.run_controls/.config/darwin#
 switch:
+    brew trust --formula atlassian/acli/acli
+    brew trust --formula metalbear-co/mirrord/mirrord
     nix run nix-darwin -- build --flake ~/.run_controls/.config/darwin#
     sudo ./result/activate
     sudo nix-env -p /nix/var/nix/profiles/system --set ./result
