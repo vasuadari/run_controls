@@ -26,6 +26,9 @@
   security.pam.services.sudo_local.reattach = true;
   security.pam.services.sudo_local.watchIdAuth = true;
 
+  # Disable quarantine for downloaded applications (no Gatekeeper prompts)
+  system.defaults.LaunchServices.LSQuarantine = false;
+
   networking.knownNetworkServices = [
     "Wi-Fi"
     "Thunderbolt Bridge"

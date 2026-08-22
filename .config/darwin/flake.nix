@@ -132,6 +132,9 @@
             "slack-cli"
             "karabiner-elements"
           ];
+
+          # Disable quarantine for casks (deprecated but still works)
+          homebrew.caskArgs.no_quarantine = true;
         }
 
         inputs.home-manager.darwinModules.home-manager
