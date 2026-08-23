@@ -33,6 +33,9 @@
       url = "git+ssh://gitlab.agodadev.io/tools/homebrew-core.git";
       flake = false;
     };
+    omp = {
+      url = "github:can1357/oh-my-pi";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-acli, devstack-cli, agoda-homebrew-core, ... }:
@@ -142,6 +145,7 @@
           nixpkgs = nixpkgsConfig;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.vasuadari = import ./home.nix;
           home-manager.backupFileExtension = "backup";
         }

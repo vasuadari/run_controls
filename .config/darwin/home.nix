@@ -1,6 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+  imports = [ inputs.omp.homeManagerModules.default ];
+
+  programs.omp = {
+    enable = true;
+    settings.startup.quiet = true;
+  };
+
   home = {
     stateVersion = "24.11"; # Please read the comment before changing.
     packages = with pkgs; [
@@ -35,8 +42,7 @@
       nodejs
       btop
       llama-cpp
-      #wkhtmltopdf-bin
-      
+
       # Migrated from Homebrew brews (all available in Nixpkgs)
       coreutils
       ripgrep
@@ -56,7 +62,7 @@
       spark                # apache-spark
       git-lfs
       pandoc
-      
+
       # Rust CLI tools (migrated from Homebrew)
       fd
       delta                # git-delta
